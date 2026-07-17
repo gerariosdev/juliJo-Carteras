@@ -11,10 +11,15 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const product = await prisma.product.findUnique({
-    where: { slug },
-    include: { category: true },
-  });
+  let product;
+  try {
+    product = await prisma.product.findUnique({
+      where: { slug },
+      include: { category: true },
+    });
+  } catch {
+    // DB not available
+  }
   if (!product) return { title: "Producto no encontrado" };
   return {
     title: `${product.name} — JuliJo Carteras`,

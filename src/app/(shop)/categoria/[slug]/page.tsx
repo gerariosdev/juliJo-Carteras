@@ -10,7 +10,12 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const category = await prisma.category.findUnique({ where: { slug } });
+  let category;
+  try {
+    category = await prisma.category.findUnique({ where: { slug } });
+  } catch {
+    // DB not available
+  }
   if (!category) return { title: "Categoría no encontrada" };
   return {
     title: `${category.name} — JuliJo Carteras`,
