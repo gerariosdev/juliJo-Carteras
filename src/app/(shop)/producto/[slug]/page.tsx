@@ -32,16 +32,21 @@ export default async function ProductPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const product = await prisma.product.findUnique({
-    where: { slug },
-    include: {
-      images: { orderBy: { order: "asc" } },
-      variants: { where: { isActive: true } },
-      category: true,
-      material: true,
-      tags: { include: { tag: true } },
-    },
-  });
+  let product;
+  try {
+    product = await prisma.product.findUnique({
+      where: { slug },
+      include: {
+        images: { orderBy: { order: "asc" } },
+        variants: { where: { isActive: true } },
+        category: true,
+        material: true,
+        tags: { include: { tag: true } },
+      },
+    });
+  } catch {
+    // DB unavailable
+  }
 
   if (!product || !product.isActive) notFound();
 

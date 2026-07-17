@@ -24,23 +24,28 @@ export default async function CategoryPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const category = await prisma.category.findUnique({
-    where: { slug },
-    include: {
-      products: {
-        where: { isActive: true },
-        include: {
-          images: { where: { isPrimary: true }, take: 1 },
-          variants: {
-            where: { isActive: true },
-            select: { price: true, stock: true },
-            take: 1,
+  let category;
+  try {
+    category = await prisma.category.findUnique({
+      where: { slug },
+      include: {
+        products: {
+          where: { isActive: true },
+          include: {
+            images: { where: { isPrimary: true }, take: 1 },
+            variants: {
+              where: { isActive: true },
+              select: { price: true, stock: true },
+              take: 1,
+            },
+            material: true,
           },
-          material: true,
         },
       },
-    },
-  });
+    });
+  } catch {
+    // DB not available
+  }
 
   if (!category) notFound();
 
