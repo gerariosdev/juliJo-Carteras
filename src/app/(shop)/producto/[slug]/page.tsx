@@ -48,7 +48,15 @@ export default async function ProductPage({
     // DB unavailable
   }
 
-  if (!product || !product.isActive) notFound();
+  if (!product || !product.isActive) {
+    return (
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
+        <h1 className="text-3xl font-bold text-stone-900 mb-4">Producto no disponible</h1>
+        <p className="text-stone-500 mb-8">La base de datos no está conectada o el producto no existe.</p>
+        <a href="/" className="text-amber-700 hover:underline">Volver al inicio</a>
+      </div>
+    );
+  }
 
   const hasStock = product.variants.some((v) => v.stock > 0);
   const minPrice = Math.min(

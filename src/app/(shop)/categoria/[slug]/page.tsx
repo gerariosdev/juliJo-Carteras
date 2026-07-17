@@ -47,7 +47,15 @@ export default async function CategoryPage({
     // DB not available
   }
 
-  if (!category) notFound();
+  if (!category) {
+    return (
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
+        <h1 className="text-3xl font-bold text-stone-900 mb-4">Categoría no disponible</h1>
+        <p className="text-stone-500 mb-8">La base de datos no está conectada. Iniciá PostgreSQL con <code className="bg-stone-100 px-2 py-0.5 rounded text-sm">iniciar.cmd</code></p>
+        <a href="/" className="text-amber-700 hover:underline">Volver al inicio</a>
+      </div>
+    );
+  }
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
