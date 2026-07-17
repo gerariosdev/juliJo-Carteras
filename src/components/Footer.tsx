@@ -1,203 +1,98 @@
 import Link from "next/link";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import {
-  Globe,
-  Mail,
-  MapPin,
-  Phone,
-  Heart,
-  ArrowRight,
-} from "lucide-react";
 
 export function Footer() {
   return (
-    <footer className="bg-stone-950 text-stone-300">
+    <footer className="bg-stone-50 border-t border-stone-100 mt-20">
       {/* Newsletter */}
-      <div className="bg-gradient-to-r from-amber-900 to-amber-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-            <div className="text-center md:text-left">
-              <h3 className="text-xl font-bold text-white">
-                Enterate de las novedades
-              </h3>
-              <p className="text-amber-200/80 text-sm mt-1">
-                Suscribite para recibir ofertas exclusivas y nuevos lanzamientos
-              </p>
-            </div>
-            <form className="flex w-full md:w-auto gap-2">
-              <Input
+      <div className="border-b border-stone-200">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-12">
+          <div className="max-w-lg mx-auto text-center">
+            <h3 className="font-serif text-2xl text-stone-900 mb-2">
+              Enterate de las novedades
+            </h3>
+            <p className="text-sm text-stone-500 mb-6">
+              Suscribite para recibir ofertas exclusivas y nuevos lanzamientos
+            </p>
+            <form className="flex gap-2 max-w-md mx-auto">
+              <input
                 type="email"
-                placeholder="Tu correo electrónico"
-                className="min-w-[250px] bg-amber-950/50 border-amber-700/50 text-white placeholder:text-amber-300/50 focus:ring-amber-400"
-                required
+                placeholder="tu@email.com"
+                className="flex-1 h-11 px-4 rounded-full border border-stone-200 bg-white text-sm text-stone-900 placeholder:text-stone-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition"
               />
-              <Button
+              <button
                 type="submit"
-                className="bg-amber-500 hover:bg-amber-400 text-amber-950 font-semibold"
+                className="h-11 px-6 rounded-full bg-primary text-white text-sm font-medium hover:bg-primary-hover transition shadow-sm"
               >
                 Suscribirme
-                <ArrowRight className="w-4 h-4 ml-1" />
-              </Button>
+              </button>
             </form>
           </div>
         </div>
       </div>
 
       {/* Links */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {/* Marca */}
-          <div className="space-y-4">
-            <Link href="/" className="flex items-center gap-2">
-              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-amber-600 to-amber-400 flex items-center justify-center">
-                <span className="text-white font-bold text-sm">JC</span>
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 lg:gap-16">
+          {/* Brand */}
+          <div className="col-span-2 md:col-span-1">
+            <Link href="/" className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center">
+                <span className="text-white font-bold text-xs">JC</span>
               </div>
-              <span className="font-bold text-lg text-white">
-                JuliJo <span className="text-amber-400">Carteras</span>
-              </span>
+              <span className="font-serif text-xl text-stone-900">JuliJo</span>
             </Link>
-            <p className="text-sm text-stone-400 leading-relaxed">
-              Marroquinería artesanal argentina. Cada pieza es única, diseñada y
-              confeccionada a mano con cuero genuino de la mejor calidad.
+            <p className="mt-4 text-sm text-stone-500 leading-relaxed">
+              Marroquinería artesanal argentina. Cada pieza es única, diseñada y confeccionada a mano con cuero genuino de la mejor calidad.
             </p>
-            <div className="flex gap-3">
-              <a
-                href="#"
-                className="w-9 h-9 rounded-full bg-stone-800 flex items-center justify-center hover:bg-amber-700 transition-colors"
-                aria-label="Instagram"
-              >
-                <Globe className="w-4 h-4" />
-              </a>
-              <a
-                href="#"
-                className="w-9 h-9 rounded-full bg-stone-800 flex items-center justify-center hover:bg-amber-700 transition-colors"
-                aria-label="Facebook"
-              >
-                <Globe className="w-4 h-4" />
-              </a>
-              <a
-                href="mailto:info@julijocarteras.com"
-                className="w-9 h-9 rounded-full bg-stone-800 flex items-center justify-center hover:bg-amber-700 transition-colors"
-                aria-label="Email"
-              >
-                <Mail className="w-4 h-4" />
-              </a>
-            </div>
           </div>
 
-          {/* Tienda */}
+          {/* Shop */}
           <div>
-            <h4 className="font-semibold text-white mb-4">Tienda</h4>
+            <h4 className="text-xs font-semibold text-stone-900 uppercase tracking-wider mb-6">
+              Productos
+            </h4>
             <ul className="space-y-3">
-              {[
-                { label: "Todos los productos", href: "/productos" },
-                { label: "Carteras", href: "/categoria/carteras" },
-                { label: "Mochilas", href: "/categoria/mochilas" },
-                { label: "Billeteras", href: "/categoria/billeteras" },
-                { label: "Accesorios", href: "/categoria/accesorios" },
-                { label: "Ofertas", href: "/productos?oferta=true" },
-              ].map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="text-sm text-stone-400 hover:text-amber-400 transition-colors"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
+              <li><Link href="/productos" className="text-sm text-stone-500 hover:text-stone-900 transition">Todos los productos</Link></li>
+              <li><Link href="/categoria/carteras" className="text-sm text-stone-500 hover:text-stone-900 transition">Carteras</Link></li>
+              <li><Link href="/categoria/billeteras" className="text-sm text-stone-500 hover:text-stone-900 transition">Billeteras</Link></li>
+              <li><Link href="/categoria/mochilas" className="text-sm text-stone-500 hover:text-stone-900 transition">Mochilas</Link></li>
+              <li><Link href="/categoria/accesorios" className="text-sm text-stone-500 hover:text-stone-900 transition">Accesorios</Link></li>
             </ul>
           </div>
 
-          {/* Ayuda */}
+          {/* Help */}
           <div>
-            <h4 className="font-semibold text-white mb-4">Ayuda</h4>
+            <h4 className="text-xs font-semibold text-stone-900 uppercase tracking-wider mb-6">
+              Ayuda
+            </h4>
             <ul className="space-y-3">
-              {[
-                { label: "Preguntas frecuentes", href: "/faq" },
-                { label: "Envíos y entregas", href: "/envios" },
-                { label: "Cambios y devoluciones", href: "/cambios" },
-                { label: "Cuidado del cuero", href: "/blog/cuidado-del-cuero" },
-                { label: "Medidas y talles", href: "/guia-de-talles" },
-                { label: "Contacto", href: "/contacto" },
-              ].map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="text-sm text-stone-400 hover:text-amber-400 transition-colors"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
+              <li><Link href="/faq" className="text-sm text-stone-500 hover:text-stone-900 transition">Preguntas frecuentes</Link></li>
+              <li><Link href="/envios" className="text-sm text-stone-500 hover:text-stone-900 transition">Envíos y entregas</Link></li>
+              <li><Link href="/cambios" className="text-sm text-stone-500 hover:text-stone-900 transition">Cambios y devoluciones</Link></li>
+              <li><Link href="/contacto" className="text-sm text-stone-500 hover:text-stone-900 transition">Contacto</Link></li>
             </ul>
           </div>
 
-          {/* Contacto */}
+          {/* Info */}
           <div>
-            <h4 className="font-semibold text-white mb-4">Contacto</h4>
+            <h4 className="text-xs font-semibold text-stone-900 uppercase tracking-wider mb-6">
+              Empresa
+            </h4>
             <ul className="space-y-3">
-              <li className="flex items-start gap-3">
-                <MapPin className="w-4 h-4 mt-0.5 text-amber-400 shrink-0" />
-                <span className="text-sm text-stone-400">
-                  Buenos Aires, Argentina
-                </span>
-              </li>
-              <li className="flex items-start gap-3">
-                <Phone className="w-4 h-4 mt-0.5 text-amber-400 shrink-0" />
-                <a
-                  href="tel:+5491123456789"
-                  className="text-sm text-stone-400 hover:text-amber-400 transition-colors"
-                >
-                  +54 9 11 2345-6789
-                </a>
-              </li>
-              <li className="flex items-start gap-3">
-                <Mail className="w-4 h-4 mt-0.5 text-amber-400 shrink-0" />
-                <a
-                  href="mailto:info@julijocarteras.com"
-                  className="text-sm text-stone-400 hover:text-amber-400 transition-colors"
-                >
-                  info@julijocarteras.com
-                </a>
-              </li>
+              <li><Link href="/nosotros" className="text-sm text-stone-500 hover:text-stone-900 transition">Sobre nosotros</Link></li>
+              <li><Link href="/blog" className="text-sm text-stone-500 hover:text-stone-900 transition">Blog</Link></li>
+              <li><Link href="/terminos" className="text-sm text-stone-500 hover:text-stone-900 transition">Términos y condiciones</Link></li>
+              <li><Link href="/privacidad" className="text-sm text-stone-500 hover:text-stone-900 transition">Privacidad</Link></li>
             </ul>
-            <div className="mt-6 p-4 rounded-lg bg-stone-900 border border-stone-800">
-              <div className="flex items-center gap-2 text-sm">
-                <Heart className="w-4 h-4 text-red-400" />
-                <span className="text-stone-400">
-                  Hecho con amor en Argentina
-                </span>
-              </div>
-            </div>
           </div>
         </div>
       </div>
 
-      {/* Copyright */}
-      <div className="border-t border-stone-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-            <p className="text-sm text-stone-500">
-              &copy; {new Date().getFullYear()} JuliJo Carteras. Todos los
-              derechos reservados.
-            </p>
-            <div className="flex gap-6 text-sm">
-              <Link
-                href="/privacidad"
-                className="text-stone-500 hover:text-stone-300 transition-colors"
-              >
-                Política de privacidad
-              </Link>
-              <Link
-                href="/terminos"
-                className="text-stone-500 hover:text-stone-300 transition-colors"
-              >
-                Términos y condiciones
-              </Link>
-            </div>
-          </div>
+      {/* Bottom */}
+      <div className="border-t border-stone-200">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-stone-400">
+          <p>© {new Date().getFullYear()} JuliJo Carteras. Todos los derechos reservados.</p>
+          <p>Hecho a mano en Argentina 🇦🇷</p>
         </div>
       </div>
     </footer>

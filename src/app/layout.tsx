@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
@@ -11,6 +11,12 @@ const inter = Inter({
   display: "swap",
 });
 
+const playfair = Playfair_Display({
+  variable: "--font-serif",
+  subsets: ["latin"],
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   title: {
     default: "JuliJo Carteras | Marroquinería Artesanal",
@@ -18,18 +24,9 @@ export const metadata: Metadata = {
   },
   description:
     "Carteras y accesorios de cuero artesanales. Marroquinería premium hecha a mano en Argentina.",
-  keywords: [
-    "carteras",
-    "cuero",
-    "marroquinería",
-    "artesanal",
-    "accesorios",
-    "argentina",
-  ],
   openGraph: {
-    title: "JuliJo Carteras | Marroquinería Artesanal",
-    description:
-      "Carteras y accesorios de cuero artesanales. Marroquinería premium hecha a mano en Argentina.",
+    title: "JuliJo Carteras",
+    description: "Marroquinería artesanal de cuero",
     type: "website",
     locale: "es_AR",
     siteName: "JuliJo Carteras",
@@ -42,8 +39,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es" className={`${inter.variable} h-full`}>
-      <body className="min-h-full flex flex-col font-sans antialiased">
+    <html lang="es" className={`${inter.variable} ${playfair.variable}`}>
+      <body className="min-h-screen flex flex-col bg-background text-foreground antialiased">
         <Providers>
           <Header />
           <main className="flex-1">{children}</main>
